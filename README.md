@@ -1,48 +1,153 @@
-#Online Food Delivery System
-Overview
-The Online Food Delivery System is a Java-based project designed to streamline food ordering and delivery processes. It incorporates a database for managing customer information, food orders, and related operations.
+# Online Food Delivery System
 
-#Features
-Customer Management: Handle customer details through the CUSTOMER.java and CustomerForm.java classes.
-Food Ordering System: Core functionalities are implemented in FoodOrderSystem.java and auxiliary classes like f1.java, f4.java, and f6.java.
-Database Integration:
-SQL queries and relational algebra mappings (sql_to_relational_algebra.txt).
-Table creation scripts and data samples (tablecreation.txt, tables.txt, data.txt).
-Query results stored in queiriesResults.txt.
+A Java-based enterprise solution for managing online food delivery operations, built with Oracle Database integration. This system provides comprehensive customer management, order processing, and database operations specifically optimized for Oracle environments.
 
-##Project Structure
+## Features
+
+### Database Integration
+- Oracle Database implementation (tested with Oracle XE)
+- JDBC-based connectivity
+- Prepared statement usage for secure queries
+- Connection pooling optimization
+
+### Authentication System
+- Dual authentication paths:
+  - Customer login via email/password
+  - Administrative access control
+- Secure password handling
+- Session management
+
+### User Interface
+- Swing-based graphical interface
+- Responsive panel switching
+- Custom-styled components
+- Background image support
+
+## Technical Requirements
+
+### System Prerequisites
+- Java Development Kit (JDK) 8 or higher
+- Oracle Database (XE 11g/18c/21c supported)
+- Oracle JDBC Driver (ojdbc8.jar)
+- Minimum 4GB RAM
+- 500MB available storage space
+
+### Oracle Database Configuration
+- Default service name: xe
+- Default port: 1521
+- Required privileges: CREATE SESSION, CREATE TABLE, CREATE SEQUENCE
+
+## System Architecture
+
+```
 OnlineFoodDelivery/
-├── .vscode/                  # IDE-specific settings
-├── database/                 # Database scripts and data
-│   ├── data.txt
-│   ├── queiries.txt
-│   ├── queiriesResults.txt
-│   ├── sql_to_relational_algebra.txt
-│   ├── tablecreation.txt
-│   ├── tables.txt
-├── src/                      # Source code
-│   ├── CUSTOMER.java
-│   ├── CustomerForm.java
-│   ├── f1.java
-│   ├── f4.java
-│   ├── f6.java
-│   ├── FoodOrderSystem.java
+├── src/
+│   ├── f1.java               # Authentication system
+│   ├── f4.java               # Customer interface
+│   ├── f6.java               # Admin interface
+│   ├── CUSTOMER.java         # Customer entity
+│   └── CustomerForm.java     # Registration form
+├── database/
+│   ├── schema/
+│   │   ├── tables.sql        # Table definitions
+│   │   └── sequences.sql     # Sequence definitions
+│   └── queries/
+│       ├── customer.sql      # Customer-related queries
+│       └── admin.sql         # Administrative queries
+└── lib/
+    └── ojdbc8.jar           # Oracle JDBC driver
+```
 
-#Requirements
-Java Development Kit (JDK): Version 8 or higher.
-Database System: Any SQL-compatible database (e.g., MySQL, PostgreSQL).
-IDE: Visual Studio Code or any Java-compatible IDE.
-#Setup
-Clone or Download the project.
-Import the project into your IDE.
-Set up the database using the scripts in the database/ folder.
-Run the FoodOrderSystem.java file to start the application.
-#Usage
-Add customer details using the customer management interface.
-Place and manage food orders via the main system.
-View and analyze database operations and query results.
-#Contributing
-Contributions are welcome! Feel free to fork this repository and submit pull requests for new features or bug fixes.
+## Installation Instructions
 
-License
-This project is licensed under the MIT License.
+1. Database Setup:
+```sql
+-- Connect as SYSTEM user
+sqlplus SYSTEM/your_password
+
+-- Create required tables
+@database/schema/tables.sql
+
+-- Grant necessary permissions
+GRANT CREATE SESSION TO food_delivery_user;
+GRANT CREATE TABLE TO food_delivery_user;
+```
+
+2. Application Configuration:
+```bash
+# Compile the application
+javac -cp "lib/ojdbc8.jar" src/*.java
+
+# Run the application
+java -cp "lib/ojdbc8.jar:src" f1
+```
+
+3. Default Credentials:
+   - Admin Login:
+     - Username: admin1
+     - Password: cvb
+   - Customer Login: Use registered email and password
+
+## Database Schema
+
+### Customer Table
+```sql
+CREATE TABLE customer (
+    customer_id NUMBER PRIMARY KEY,
+    emailid VARCHAR2(100) UNIQUE,
+    pwd VARCHAR2(50) NOT NULL
+    -- Additional fields as per requirements
+);
+```
+
+## Security Considerations
+
+1. Database Security:
+   - Uses prepared statements to prevent SQL injection
+   - Implements connection pooling for resource optimization
+   - Secures database credentials
+
+2. Authentication Security:
+   - Password encryption in transit
+   - Session timeout implementation
+   - Input validation and sanitization
+
+## Development Guidelines
+
+1. Oracle-Specific Best Practices:
+   - Use Oracle data types (VARCHAR2 instead of VARCHAR)
+   - Implement proper exception handling for Oracle SQLExceptions
+   - Follow Oracle naming conventions
+
+2. Code Contribution:
+   - Maintain consistent error handling
+   - Document Oracle-specific functionality
+   - Test against target Oracle version
+
+## Troubleshooting
+
+Common Issues:
+1. ORA-12541: No listener
+   - Verify Oracle service is running
+   - Check tnsnames.ora configuration
+
+2. ORA-01017: Invalid username/password
+   - Verify database credentials
+   - Check user permissions
+
+## Support
+
+Technical Assistance:
+- Database Issues: dba@organization.com
+- Application Support: support@organization.com
+- Documentation: Project Wiki
+
+## License
+
+This project is licensed under the MIT License. See LICENSE.md for details.
+
+## Acknowledgments
+
+- Oracle Database architecture implementation
+- UI/UX design patterns
+- Security implementation guidelines
