@@ -1,9 +1,9 @@
 package src;
+
 import java.sql.*;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.FocusAdapter;
-import java.awt.event.FocusEvent;
+
 
 public class f4 extends javax.swing.JFrame {
     Connection Con = null;
@@ -49,10 +49,8 @@ public class f4 extends javax.swing.JFrame {
         jPanel1.add(orderButton);
         orderButton.setBounds(300, 150, 300, 80);
 
-       
-
         // Background image
-        ImageIcon imgIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image.jpg");
+        ImageIcon imgIcon = new ImageIcon("img\\orderNow.jpg");
         Image img = imgIcon.getImage().getScaledInstance(900, 600, Image.SCALE_SMOOTH);
         backgroundLabel.setIcon(new ImageIcon(img));
         backgroundLabel.setBounds(0, 0, 900, 600);
@@ -66,7 +64,6 @@ public class f4 extends javax.swing.JFrame {
         this.dispose();
     }
 
-
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(() -> new f4().setVisible(true));
     }
@@ -76,4 +73,3 @@ public class f4 extends javax.swing.JFrame {
     private javax.swing.JButton orderButton;
     private javax.swing.JLabel backgroundLabel;
 }
-

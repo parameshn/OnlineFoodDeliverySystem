@@ -111,7 +111,7 @@ public class CustomerForm extends javax.swing.JFrame {
 
         // Set background image
         try {
-            ImageIcon imgIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image (6).jpg");
+            ImageIcon imgIcon = new ImageIcon("img\\customerEditOptions.jpg");
             Image img = imgIcon.getImage().getScaledInstance(800, 600, Image.SCALE_SMOOTH);
             backgroundLabel = new JLabel(new ImageIcon(img));
             backgroundLabel.setBounds(0, 0, 800, 600);

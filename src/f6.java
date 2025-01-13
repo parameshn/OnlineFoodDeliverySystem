@@ -13,7 +13,6 @@ public class f6 extends javax.swing.JFrame {
     private JButton jButton1, jButton2, jButton11, viewOrdersButton;
     private JTextArea jTextArea;
     private JLabel backgroundLabel;
-    private JLabel tableBackgroundLabel;
 
     public f6() {
         initComponents();
@@ -42,7 +41,7 @@ public class f6 extends javax.swing.JFrame {
 
         // Create the background image
         backgroundLabel = new JLabel();
-        ImageIcon mainBgIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image (3).jpg");
+        ImageIcon mainBgIcon = new ImageIcon("img\\adminOptions.jpg");
         Image mainBgImg = mainBgIcon.getImage().getScaledInstance(900, 600, Image.SCALE_SMOOTH);
         backgroundLabel.setIcon(new ImageIcon(mainBgImg));
         backgroundLabel.setBounds(0, 0, 900, 600);

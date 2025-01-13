@@ -68,7 +68,7 @@ public class f1 extends javax.swing.JFrame {
         welcomePanel.setBounds(0, 0, 900, 600);
 
         // Set Welcome Panel Background Image
-        ImageIcon welcomeIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image.jpg");
+        ImageIcon welcomeIcon = new ImageIcon("img\\entry.jpg");
         Image welcomeImg = welcomeIcon.getImage().getScaledInstance(900, 600, Image.SCALE_SMOOTH);
         JLabel welcomeBackground = new JLabel(new ImageIcon(welcomeImg));
         welcomeBackground.setBounds(0, 0, 900, 600);
@@ -92,7 +92,7 @@ public class f1 extends javax.swing.JFrame {
         customerLoginPanel.setBounds(0, 0, 900, 600);
 
         // Set Customer Login Panel Background Image
-        ImageIcon customerIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image (22).jpg"); // Set your
+        ImageIcon customerIcon = new ImageIcon("img\\customerLogin.jpg"); // Set your
                                                                                                         // background
                                                                                                         // image path
                                                                                                         // here
@@ -135,7 +135,7 @@ public class f1 extends javax.swing.JFrame {
         adminLoginPanel.setBounds(0, 0, 900, 600);
 
         // Set Admin Login Panel Background Image
-        ImageIcon adminIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image (23).jpg");
+        ImageIcon adminIcon = new ImageIcon("img\\adminLogin.jpg");
         Image adminImg = adminIcon.getImage().getScaledInstance(900, 600, Image.SCALE_SMOOTH);
         JLabel adminBackground = new JLabel(new ImageIcon(adminImg));
         adminBackground.setBounds(0, 0, 900, 600);

@@ -273,3 +273,100 @@ BEGIN
     END IF;
 END;
 /
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+-- 1. Stored Procedure to calculate total orders value for a customer
+CREATE OR REPLACE PROCEDURE calculate_customer_orders(
+    p_custid IN NUMBER,
+    p_total_value OUT NUMBER,
+    p_order_count OUT NUMBER
+) 
+AS 
+BEGIN 
+    -- Get total value of all orders
+    SELECT COUNT(o.ordid), SUM(o.totalcost)
+    INTO p_order_count, p_total_value
+    FROM order1 o 
+    JOIN payment p ON o.ordid = p.ordid 
+    WHERE p.custid = p_custid;
+    
+    -- If no orders found, set values to 0
+    IF p_total_value IS NULL THEN
+        p_total_value := 0;
+        p_order_count := 0;
+    END IF;
+EXCEPTION 
+    WHEN NO_DATA_FOUND THEN
+        p_total_value := 0;
+        p_order_count := 0;
+    WHEN OTHERS THEN
+        RAISE_APPLICATION_ERROR(-20001, 'An error occurred: ' || SQLERRM);
+END;
+/
+
+-- Usage example:
+-- DECLARE
+--     v_total NUMBER;
+--     v_count NUMBER;
+-- BEGIN
+--     calculate_customer_orders(100, v_total, v_count);
+--     DBMS_OUTPUT.PUT_LINE('Total orders: ' || v_count);
+--     DBMS_OUTPUT.PUT_LINE('Total value: ' || v_total);
+-- END;
+-- /
+
+-- 2. Stored Procedure to update food price and availability
+CREATE OR REPLACE PROCEDURE update_food_details(
+    p_foodid IN NUMBER,
+    p_new_price IN NUMBER,
+    p_new_quantity IN NUMBER,
+    p_status OUT VARCHAR2
+) 
+AS 
+    v_current_price NUMBER;
+    v_current_quantity NUMBER;
+BEGIN 
+    -- Get current values
+    SELECT price, quantity 
+    INTO v_current_price, v_current_quantity
+    FROM food 
+    WHERE foodid = p_foodid;
+    
+    -- Update price and quantity
+    UPDATE food 
+    SET price = p_new_price,
+        quantity = p_new_quantity,
+        foodavail = CASE 
+                      WHEN p_new_quantity > 0 THEN 'yes'
+                      ELSE 'no'
+                    END
+    WHERE foodid = p_foodid;
+    
+    IF SQL%ROWCOUNT > 0 THEN
+        p_status := 'Success - Updated price from ' || v_current_price || 
+                   ' to ' || p_new_price || ' and quantity from ' || 
+                   v_current_quantity || ' to ' || p_new_quantity;
+    ELSE
+        p_status := 'Food item not found';
+    END IF;
+    
+    COMMIT;
+EXCEPTION 
+    WHEN NO_DATA_FOUND THEN
+        p_status := 'Error: Food item not found';
+        ROLLBACK;
+    WHEN OTHERS THEN
+        p_status := 'Error: ' || SQLERRM;
+        ROLLBACK;
+END;
+/
+
+-- Usage example:
+-- DECLARE
+--     v_status VARCHAR2(200);
+-- BEGIN
+--     update_food_details(60, 120, 5, v_status);
+--     DBMS_OUTPUT.PUT_LINE(v_status);
+-- END;
+-- /

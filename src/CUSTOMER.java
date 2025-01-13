@@ -1,4 +1,5 @@
 package src;
+
 import java.awt.*;
 import java.sql.*;
 import javax.swing.*;
@@ -63,7 +64,7 @@ public class CUSTOMER extends javax.swing.JFrame {
                 setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
                 // Configure the background image
-                ImageIcon imgIcon = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image (5).jpg");
+                ImageIcon imgIcon = new ImageIcon("img\\customerData.jpg");
                 Image img = imgIcon.getImage().getScaledInstance(900, 600, Image.SCALE_SMOOTH);
                 backgroundLabel.setIcon(new ImageIcon(img));
                 backgroundLabel.setBounds(0, 0, 900, 600);
@@ -83,7 +84,6 @@ public class CUSTOMER extends javax.swing.JFrame {
                 jButton1.setText("CUSTOMER DATA");
                 jButton1.setFont(new Font("Sylfaen", Font.BOLD, 18));
                 jButton1.setBounds(350, 50, 200, 40);
-                jButton1.addActionListener(this::jButton1ActionPerformed);
                 jPanel1.add(jButton1);
 
                 jButton2.setText("Back");
@@ -104,11 +104,6 @@ public class CUSTOMER extends javax.swing.JFrame {
                 setResizable(false);
         }
 
-        private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {
-                // Display customer data feature (not implemented yet)
-                JOptionPane.showMessageDialog(this, "Displaying customer data feature not yet implemented.");
-        }
-
         private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {
                 // Navigate back to the f6 screen
                 new f6().setVisible(true);
@@ -119,5 +114,3 @@ public class CUSTOMER extends javax.swing.JFrame {
                 java.awt.EventQueue.invokeLater(() -> new CUSTOMER().setVisible(true));
         }
 }
-
-
