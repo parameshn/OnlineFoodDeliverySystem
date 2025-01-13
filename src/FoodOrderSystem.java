@@ -11,7 +11,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.Map;
-import java.sql.Statement;
 
 public class FoodOrderSystem extends JFrame {
     private Map<String, Integer> quantities = new HashMap<>();
@@ -21,9 +20,6 @@ public class FoodOrderSystem extends JFrame {
     private JPanel foodPanel;
     private static final int IMG_WIDTH = 150;
     private static final int IMG_HEIGHT = 150;
-    private int customerId;
-    private Map<String, Integer> foodIds = new HashMap<>();
-    private Connection conn;
 
     public FoodOrderSystem() {
         initializeFoodImages();
@@ -33,15 +29,15 @@ public class FoodOrderSystem extends JFrame {
     }
 
     private void initializeFoodImages() {
-        foodImages.put("Pizza", "C:\\Users\\Paramesh\\Downloads\\image (13).jpg");
-        foodImages.put("Burger", "C:\\Users\\Paramesh\\Downloads\\image (14).jpg");
-        foodImages.put("Ice Cream", "C:\\Users\\Paramesh\\Downloads\\image (15).jpg");
-        foodImages.put("Fried Rice", "C:\\Users\\Paramesh\\Downloads\\image (16).jpg");
-        foodImages.put("Roti Curry", "C:\\Users\\Paramesh\\Downloads\\image (17).jpg");
-        foodImages.put("Biryani", "C:\\Users\\Paramesh\\Downloads\\image (18).jpg");
-        foodImages.put("Masala Dosa", "C:\\Users\\Paramesh\\Downloads\\image (19).jpg");
-        foodImages.put("Momos", "C:\\Users\\Paramesh\\Downloads\\image (20).jpg");
-        foodImages.put("Idly Sambar", "C:\\Users\\Paramesh\\Downloads\\image (21).jpg");
+        foodImages.put("Pizza", "img\\pizza.jpg");
+        foodImages.put("Burger", "img\\burger.jpg");
+        foodImages.put("Ice Cream", "img\\icecream.jpg");
+        foodImages.put("Fried Rice", "img\\FriedRice.jpg");
+        foodImages.put("Roti Curry", "img\\roti.jpg");
+        foodImages.put("Biryani", "img\\biryani.jpg");
+        foodImages.put("Masala Dosa", "img/dosa.jpg");
+        foodImages.put("Momos", "img\\momo.jpg");
+        foodImages.put("Idly Sambar", "img\\idly.jpg");
     }
 
     private void initializePrices() {
@@ -69,7 +65,7 @@ public class FoodOrderSystem extends JFrame {
             @Override
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
-                ImageIcon background = new ImageIcon("C:\\Users\\Paramesh\\Downloads\\image (12).jpg");
+                ImageIcon background = new ImageIcon("img\\FoodSelection.jpg");
                 g.drawImage(background.getImage(), 0, 0, getWidth(), getHeight(), this);
             }
         };
@@ -117,18 +113,7 @@ public class FoodOrderSystem extends JFrame {
         setContentPane(mainPanel);
     }
 
-    private void initializeDatabase() {
-        try {
-            Class.forName("oracle.jdbc.driver.OracleDriver");
-            conn = DriverManager.getConnection(
-                    "jdbc:oracle:thin:@localhost:1521:xe", "system", "123");
-            System.out.println("Database connected successfully");
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.err.println("Database connection error: " + e.getMessage());
-            JOptionPane.showMessageDialog(this, "Database connection failed: " + e.getMessage());
-        }
-    }
+   
 
     private void addStylishFoodItem(String foodName) {
         JPanel itemPanel = new JPanel();
