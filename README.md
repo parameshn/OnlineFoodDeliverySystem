@@ -23,6 +23,52 @@ A Java-based enterprise solution for managing online food delivery operations, b
 - Custom-styled components
 - Background image support
 
+### User Interface Images
+
+#### Main Interface
+![Main Interface](Userinterfaceimg\entry.png)
+- Landing page with customer and admin login options
+- Themed with food delivery artwork
+- Pizza-themed background with vibrant colors
+
+#### Login Interfaces
+![Customer Login](Userinterfaceimg\customer.png)
+- Customer login interface with email and password fields
+- Clean, simple design for easy access
+
+![Admin Login](Userinterfaceimg\admin.png)
+- Administrative login portal
+- Secure access point for system management
+
+#### Customer Management
+![Customer List](Userinterfaceimg\customers.png)
+- Customer database interface
+- Display of customer information and management options
+
+![Customer Form](Userinterfaceimg\customerEdit.png)
+- Customer information editing interface
+- Profile management with multiple fields
+
+#### Employee Data Management
+![Employee Details](Userinterfaceimg\employee.png)
+- Comprehensive employee data interface
+
+#### Order Management
+![Menu Interface](Userinterfaceimg\orderselection.png)
+- Menu selection and order placement interface
+- Real-time pricing and quantity management
+- Order confirmation system
+
+![Order History](Userinterfaceimg\order.png)
+- Detailed order tracking and history
+- Transaction records with timestamps
+
+![Order Now](Userinterfaceimg\ordernow.png)
+- Quick order placement interface
+- Delivery personnel visualization
+- Brand integration with delivery service
+
+
 ## Technical Requirements
 
 ### System Prerequisites
@@ -151,3 +197,4 @@ This project is licensed under the MIT License. See LICENSE.md for details.
 - Oracle Database architecture implementation
 - UI/UX design patterns
 - Security implementation guidelines
+
